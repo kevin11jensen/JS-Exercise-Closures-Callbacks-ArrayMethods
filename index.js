@@ -159,7 +159,8 @@ function processContains(item, list, cb) {
  * should return 3.
 */
 function processDuplicateFree(list, cb) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+  let deDuped = cb(list.filter((item, index) => list.indexOf(item) === index));
+  return deDuped;
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -222,7 +223,7 @@ function firstNamesAllCaps(runners) {
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
 function getRunnersByTShirtSize(runners, tShirtSize) {
-  const size = runner.filter(item => item.shirt_size === tShirtSize);
+  const size = runners.filter(item => item.shirt_size === tShirtSize);
   return size;
 }
 
@@ -236,8 +237,8 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  return runners.reduce((acc, runner) => acc + runner.donation, 0);
 }
 
 /////////////// CLOSURES ///////////////
@@ -257,12 +258,10 @@ function tallyUpDonations(/* CODE HERE */) {
  * etc
 */
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = 0;
+  return function counter(){
+    return count ++;
   }
-  // BROKEN CODE ENDS
 }
 
 /**
@@ -285,8 +284,14 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(limit) {
+  let count = -1;
+  return function(){
+    if(count === limit) {
+      count = -1
+    }
+    return ++count;
+  }
 }
 
 /////////////// END OF CHALLENGE ///////////////
